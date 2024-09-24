@@ -1,32 +1,25 @@
-import React, { Component } from 'react';
+import React, {useEffect, useState} from 'react';
 import { Text } from 'react-native';
 
-class MyText extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      keyWord: this.props.keyWord + ' & Alligators',
+const MyText = (props) => {
+  const [keyWord, setKeyWord] = useState(props.keyWord);
+
+  useEffect(() => {
+    console.log('The component has been mounted');
+    return () => {
+      console.log('Component is now being destroyed');
     };
-  }
-  componentDidMount() {
-    console.log('Component has been mounted');
-  }
+  }, []);
 
-  componentDidUpdate(prevState) {
-    console.log('The state of the application has been changed', prevState, this.state);
-  }
+  useEffect(() => {
+    console.log('The value of keyWord has been changed');
+  }, [keyWord]);
 
-  componentWillUnmount() {
-    console.log('Component is now being destroyed.');
-  }
-
-  render() {
-    return(
-      <Text onPress={() => {
-        this.setState({...this.state, ...{keyWord: this.props.keyWord + ' & Seals'}});
-      }}>{this.props.keyWord} are great, but it's even better to combine {this.state.keyWord}.</Text>
-    );
-  }
-}
+  return(
+    <Text onPress={() => {
+      setKeyWord('Bandanas');
+    }}>{keyWord} are great.</Text>
+  );
+};
 
 export default MyText;
