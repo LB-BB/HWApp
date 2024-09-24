@@ -1,18 +1,20 @@
-import React from 'react';
+import React, { Component } from 'react';
 import {
   SafeAreaView,
   Text,
-  View
+  View,
 } from 'react-native';
+import MyText from './components/MyText/MyText';
 
 const App = () => {
   return (
     <SafeAreaView>
       <View>
-        <Text>Hello World!</Text>
+        <MyText keyWord={'Otters'} />
       </View>
     </SafeAreaView>
-  )
+  );
 };
+
 
 export default App;
